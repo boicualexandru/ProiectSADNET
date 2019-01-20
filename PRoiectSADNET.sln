@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.106
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PRoiectSADNET", "PRoiectSADNET\PRoiectSADNET.csproj", "{4A0234B4-AB31-4D4F-9F2B-BCFDFC8FEFAA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PRoiectSADNET", "PRoiectSADNET\PRoiectSADNET.csproj", "{4A0234B4-AB31-4D4F-9F2B-BCFDFC8FEFAA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{7F229B7A-F6B2-4C9D-B210-BE626F668466}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{4A0234B4-AB31-4D4F-9F2B-BCFDFC8FEFAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4A0234B4-AB31-4D4F-9F2B-BCFDFC8FEFAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4A0234B4-AB31-4D4F-9F2B-BCFDFC8FEFAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F229B7A-F6B2-4C9D-B210-BE626F668466}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F229B7A-F6B2-4C9D-B210-BE626F668466}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F229B7A-F6B2-4C9D-B210-BE626F668466}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F229B7A-F6B2-4C9D-B210-BE626F668466}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
