@@ -27,6 +27,21 @@ namespace Data.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasDefaultSchema("dbo");
+
+            modelBuilder.Entity<Brand>().HasData(
+                new Brand { Id = 1, Name = "Seat" },
+                new Brand { Id = 2, Name = "Renault" },
+                new Brand { Id = 3, Name = "Peugeot" }
+            );
+            
+            modelBuilder.Entity<Model>().HasData(
+                new Model { Id = 1, BrandId = 1, Name = "Seat" },
+                new Model { Id = 2, BrandId = 1, Name = "Altea" },
+                new Model { Id = 3, BrandId = 1, Name = "Altea XL" },
+                
+                new Model { Id = 4, BrandId = 2, Name = "Captur" },
+                new Model { Id = 4, BrandId = 2, Name = "Clio" }
+            );
         }
     }
 }
