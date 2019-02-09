@@ -1,5 +1,6 @@
 ﻿using Data.EntryData;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Configuration;
 
 namespace Data.Models
@@ -32,8 +33,23 @@ namespace Data.Models
             var brandsEntryDataProvider = new BrandsEntryDataProvider();
             var modelsEntryDataProvider = new ModelsEntryDataProvider();
 
+            var featuresEntryDataProvider = new FeaturesEntryDataProvider();
+            var recordsEntryDataProvider = new RecordsEntryDataProvider();
+
+            var recordsFeaturesEntryDataProvider = new RecordsFeaturesEntryDataProvider();
+            var recordsFeaturesEntryDataProviderSecond = new RecordsFeaturesEntryDataProviderSecond();
+            var recordsfeaturesData = new List<RecordFeature> { };
+            recordsfeaturesData.AddRange(recordsFeaturesEntryDataProvider.Data);
+            recordsfeaturesData.AddRange(recordsFeaturesEntryDataProviderSecond.Data);
+
             modelBuilder.Entity<Brand>().HasData(brandsEntryDataProvider.Data);
             modelBuilder.Entity<Model>().HasData(modelsEntryDataProvider.Data);
+
+            modelBuilder.Entity<Feature>().HasData(featuresEntryDataProvider.Data);
+            modelBuilder.Entity<Record>().HasData(recordsEntryDataProvider.Data);
+
+            modelBuilder.Entity<RecordFeature>().HasData(recordsFeaturesEntryDataProvider.Data);
+            modelBuilder.Entity<RecordFeature>().HasData(recordsFeaturesEntryDataProviderSecond.Data);
         }
     }
 }
