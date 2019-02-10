@@ -17,6 +17,7 @@ namespace Services.BrandModels
         public IEnumerable<BrandModel> GetBrands()
         {
             return _dbContext.Brands
+                .OrderBy(brand => brand.Name)
                 .Select(brand => new BrandModel { Id = brand.Id, Name = brand.Name });
         }
 
@@ -24,6 +25,7 @@ namespace Services.BrandModels
         {
             return _dbContext.Models
                 .Where(model => model.BrandId == brandId)
+                .OrderBy(model => model.Name)
                 .Select(model => new ModelModel { Id = model.Id, Name = model.Name });
         }
     }
