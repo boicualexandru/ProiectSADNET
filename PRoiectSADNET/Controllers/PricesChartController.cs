@@ -17,7 +17,7 @@ namespace PRoiectSADNET.Controllers
         }
 
         // POST PricesChart/ByManufactureDate
-        [HttpPost]
+        [HttpPost("ByManufactureDate")]
         public ActionResult<IList<YearPriceModel>> ByManufactureDate([FromBody] PricesChartFilterOptions filters)
         {
             return Ok(_pricesChartService.GetPricesByManufactureDate(filters));

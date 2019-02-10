@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Common;
 using Data.Models;
 using Microsoft.EntityFrameworkCore;
 using Services.PricesChart.Models;
@@ -44,12 +45,19 @@ namespace Services.PricesChart
                        Price = Convert.ToInt32(g.Average(r => r.Price))
                    });
 
-            return groupedRecords;
+            var result = FillGapsWithNull(groupedRecords.ToList(), filters.YearRange);
 
-            //return filteredRecords.Select(r => new YearPriceModel {
-            //    Year = r.ManufactureDate.Year,
-            //    Price = r.Price
-            //});
+            return result;
+        }
+
+        private IList<YearPriceModel> FillGapsWithNull(IList<YearPriceModel> dataSet, IntRange yearRange)
+        {
+            var yearCount = yearRange.End - yearRange.Start + 1;
+            return Enumerable.Range(yearRange.Start, yearCount)
+                .Select(year =>
+                    dataSet.FirstOrDefault(yearPrice => yearPrice.Year == year) ??
+                        new YearPriceModel { Year = year, Price = null })
+                .ToList();
         }
     }
 }
