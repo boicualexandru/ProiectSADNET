@@ -5,6 +5,8 @@ using Services.PricesChart.Models;
 
 namespace PRoiectSADNET.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class PricesChartController : Controller
     {
         private readonly IPricesChartService _pricesChartService;
