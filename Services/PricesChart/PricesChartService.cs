@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Data.Models;
 using Microsoft.EntityFrameworkCore;
@@ -18,8 +19,8 @@ namespace Services.PricesChart
         public IEnumerable<YearPriceModel> GetPricesByManufactureDate(PricesChartFilterOptions filters)
         {
             var filteredRecords = _dbContext.Records
-                .Where(r => r.ManufactureDate >= filters.DateRange.Start &&
-                    r.ManufactureDate <= filters.DateRange.End);
+                .Where(r => r.ManufactureDate.Year >= filters.YearRange.Start &&
+                    r.ManufactureDate.Year <= filters.YearRange.End);
             
             if(filters.ModelId != null)
             {
@@ -36,10 +37,19 @@ namespace Services.PricesChart
                 filteredRecords = filteredRecords.Where(r => r.Fuel == filters.FuelType);
             }
 
-            return filteredRecords.Select(r => new YearPriceModel {
-                Year = r.ManufactureDate.Year,
-                Price = r.Price
-            });
+            var groupedRecords = filteredRecords.GroupBy(r => r.ManufactureDate.Year)
+                   .Select(g => new YearPriceModel
+                   {
+                       Year = g.Key,
+                       Price = Convert.ToInt32(g.Average(r => r.Price))
+                   });
+
+            return groupedRecords;
+
+            //return filteredRecords.Select(r => new YearPriceModel {
+            //    Year = r.ManufactureDate.Year,
+            //    Price = r.Price
+            //});
         }
     }
 }

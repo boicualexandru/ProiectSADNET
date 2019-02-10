@@ -5,7 +5,7 @@ namespace Services.PricesChart.Models
 {
     public class PricesChartFilterOptions
     {
-        public DateRange DateRange { get; set; }
+        public IntRange YearRange { get; set; }
 
         public int? BrandId { get; set; }
 
