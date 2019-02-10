@@ -16,6 +16,7 @@ using Services.PricesChart;
 using Swashbuckle.AspNetCore.Swagger;
 using System.Reflection;
 using System.IO;
+using Services.BrandModels;
 
 namespace PRoiectSADNET
 {
@@ -50,9 +51,9 @@ namespace PRoiectSADNET
                     options.UseSqlServer(Configuration.GetSection("ConnectionStrings:App").Value)
                         .ConfigureWarnings(warning => warning.Ignore(CoreEventId.IncludeIgnoredWarning)),
                     optionsLifetime: ServiceLifetime.Scoped);
-
-
+            
             services.AddTransient<IPricesChartService, PricesChartService>();
+            services.AddTransient<IBrandModelsService, BrandModelsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
