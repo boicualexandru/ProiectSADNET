@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Data.Models;
+using Services.PricesChart;
 
 namespace PRoiectSADNET
 {
@@ -34,6 +35,9 @@ namespace PRoiectSADNET
                     options.UseSqlServer(Configuration.GetSection("ConnectionStrings:App").Value)
                         .ConfigureWarnings(warning => warning.Ignore(CoreEventId.IncludeIgnoredWarning)),
                     optionsLifetime: ServiceLifetime.Scoped);
+
+
+            services.AddTransient<IPricesChartService, PricesChartService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
