@@ -20,6 +20,7 @@ namespace Services.PricesChart
         public IEnumerable<YearPriceModel> GetPricesByManufactureDate(PricesChartFilterOptions filters)
         {
             var filteredRecords = _dbContext.Records
+                .AsNoTracking()
                 .Where(r => r.ManufactureDate.Year >= filters.YearRange.Start &&
                     r.ManufactureDate.Year <= filters.YearRange.End);
             
@@ -30,7 +31,7 @@ namespace Services.PricesChart
             else if(filters.BrandId != null)
             {
                 filteredRecords = filteredRecords.Include(r => r.Model)
-                    .Where(r => r.Model.BrandId == filters.ModelId);
+                    .Where(r => r.Model.BrandId == filters.BrandId);
             }
 
             if(filters.FuelType != null)

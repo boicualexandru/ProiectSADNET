@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Data.Models
@@ -17,5 +18,6 @@ namespace Data.Models
 
 
         public virtual Brand Brand { get; set; }
+        public virtual ICollection<Record> Records { get; set; }
     }
 }
